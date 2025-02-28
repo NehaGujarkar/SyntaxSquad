@@ -3,23 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meditation Chatbot</title>
+    <title>Website with Navbar</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Type a message..." />
+<body >
+    <header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/chats.html">Chats</a></li>
+            <li><a href="consult.html">Consult</a></li>
+            <li><a href="/INNOVATORS/account/account.html">Account</a></li>
+        </ul>
+    </nav>
+
+  
+    <div class="container">
+        <h1 class="animate_animated animate_fadeInDown">AI Meditation,Breathing,Moodtracking and Exercise</h1>
+        <p class="animate_animated animate_fadeInUp">Your companion for emotional support and mental well-being.</p>
+      </div>
+    </header>
+
+    <!-- Chatbot Section -->
+  <section class="chatbot-section">
+    <div class="chatbot-container animate_animated animate_fadeInLeft">
+      <div class="chat-header">
+        <img src="https://media.istockphoto.com/id/1333838449/vector/chatbot-icon-support-bot-cute-smiling-robot-with-headset-the-symbol-of-an-instant-response.jpg?s=612x612&w=0&k=20&c=sJ_uGp9wJ5SRsFYKPwb-dWQqkskfs7Fz5vCs2w5w950=" alt="Chatbot Icon" class="chatbot-icon">
+        <h2>Ask Med-Bot</h2>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">Hi there! I'm EmoBot. How can I help you today?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message...">
         <button onclick="sendMessage()">Send</button>
+      </div>
     </div>
-    
-    <div id="breathing-container">
-        <div id="circle"></div>
-        <p id="breathing-text">breathe in...</p>
+  </section>
+
+   <!-- Features Section -->
+   <section class="features-section">
+    <div class="container">
+      <h2 class="animate_animated animate_fadeIn">What We Offer</h2>
+      <div class="features">
+        <div class="feature animate_animated animate_fadeInUp">
+          <h3>Increase Your Concentration</h3>
+          <p>Increase your concentration from our AI-powered chatbot.</p>
+        </div>
+        <div class="feature animate_animated animatefadeInUp animate_delay-1s">
+          <h3>Supports addition recovery</h3>
+          <p>manage cravings and supports recovery from our ai tool</p>
+        </div>
+        <div class="feature animate_animated animatefadeInUp animate_delay-2s">
+          <h3>Improves Sleep</h3>
+          <p>helps to improve sleep quality and duration</p>
+        </div>
+      </div>
     </div>
-   
-    <button id="toggle-voice" onclick="toggleVoice()">🔊 Voice: Off</button>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Meditation,breathing,mood racking and exercise. All rights reserved.</p>
+    </div>
+  </footer>
+
     <script src="script.js"></script>
-    
 </body>
 </html>

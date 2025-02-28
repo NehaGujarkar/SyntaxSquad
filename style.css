@@ -1,123 +1,243 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: url('https://kriyatec.com/wp-content/uploads/2020/05/chatbot2.jpeg') no-repeat center center/cover;
 }
-
-.chat-container {
-    width: 300px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-}
-
-.chat-box {
-    height: 300px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
-
-input {
-    width: 80%;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-}
-
-button {
-    width: 18%;
-    padding: 5px;
-    border: none;
-    background: #256f87;
-    color: rgb(21, 202, 199);
-    border-radius: 5px;
-    cursor: pointer;
-}
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #8EC5FC, #E0C3FC);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.chat-container {
-    width: 350px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-}
-
-.chat-box {
-    height: 350px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
-
-.bot, .user {
-    padding: 8px;
-    border-radius: 5px;
-    margin: 5px 0;
-}
-
-.bot {
-    background: #E0F7FA;
-    text-align: left;
-}
-
-.user {
-    background: #D1C4E9;
-    text-align: right;
-}
-
-input {
-    width: 80%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-button {
-    width: 18%;
-    padding: 8px;
-    border: none;
-    background: #008CBA;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.typing {
-    font-style: italic;
-    color: gray;
-}
-#breathing-container {
-    display: none;
+/* Header Section */
+header {
+    color: #ffffff;
+    padding: 80px 0;
     text-align: center;
-    margin-top: 20px;
+  }
+  
+  header h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  header p {
+    font-size: 18px;
+    margin: 10px 0 0;
+  }
+
+.navbar {
+    top: 0;
+    background-color: #862cdad3;
+    padding: 15px;
+   
 }
 
-#circle {
-    width: 100px;
-    height: 100px;
-    background: #80DEEA;
-    border-radius: 50%;
-    margin: auto;
-    animation: breathing 8s infinite;
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-@keyframes breathing {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-    100% { transform: scale(1); }
+.navbar ul li {
+    margin: 0 15px;
 }
 
+.navbar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Chatbot Section */
+  .chatbot-section {
+    padding: 50px 0;
+    position: relative;
+  }
+  
+  .chatbot-container {
+    width: 400px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    left: 1000px;
+    
+  
+    
+  }
+  
+  .chat-header {
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    
+  }
+  
+  .chat-header img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  
+  .user-message {
+    background-color: #6c63ff;
+    color: #fff;
+    align-self: flex-end;
+  }
+  
+  .bot-message {
+    background-color: #f1f1f1;
+    color: #333;
+    align-self: flex-start;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .chat-input button {
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .chat-input button:hover {
+    background-color: #5a52e0;
+  }
+  
+  /* Features Section */
+  .features-section {
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .features-section h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .feature {
+    width: 30%;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Footer Section */
+  footer {
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #574fdb;
+}
+
+#message {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}

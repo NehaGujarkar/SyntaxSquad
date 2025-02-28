@@ -1,73 +1,92 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const chatBox = document.getElementById("chat-box");
-    const micButton = document.getElementById("toggle-voice");
+// Login Form Submission
+if (document.getElementById('loginForm')) {
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    let mediaRecorder;
-    let audioChunks = [];
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
 
-    micButton.addEventListener("click", () => {
-        if (mediaRecorder && mediaRecorder.state === "recording") {
-            stopRecording();
-        } else {
-            startRecording();
+        // Simple validation
+        if (username.trim() === '' || password.trim() === '') {
+            errorMessage.textContent = 'Please fill in all fields';
+            errorMessage.style.display = 'block';
+            return;
         }
-    });
 
-    function startRecording() {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(stream => {
-                mediaRecorder = new MediaRecorder(stream);
-                audioChunks = [];
-
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = () => {
-                    const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-                    sendAudioToServer(audioBlob);
-                };
-
-                mediaRecorder.start();
-                micButton.innerText = "🎙️ Recording... (Click to Stop)";
-            })
-            .catch(error => {
-                console.error("Microphone access error:", error);
-                alert("Please allow microphone access.");
-            });
-    }
-
-    function stopRecording() {
-        mediaRecorder.stop();
-        micButton.innerText = "🎤 Speak";
-    }
-
-    function sendAudioToServer(audioBlob) {
-        const formData = new FormData();
-        formData.append("file", audioBlob, "speech.wav");
-
-        fetch("http://127.0.0.1:8000/speech-to-text/", {
-            method: "POST",
-            body: formData
+        // Submit form data to PHP
+        fetch('login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)},
         })
         .then(response => response.json())
         .then(data => {
-            if (data.recognized_text) {
-                addMessage("user", "You: " + data.recognized_text);
-                botResponse(data.recognized_text);
+            if (data.success) {
+                window.location.href = 'dashboard.html'; // Redirect on success
             } else {
-                addMessage("bot", "Bot: Sorry, I couldn't understand.");
+                errorMessage.textContent = data.message || 'Login failed';
+                errorMessage.style.display = 'block';
             }
         })
-        .catch(error => console.error("Error:", error));
-    }
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessage.textContent = 'An error occurred';
+            errorMessage.style.display = 'block';
+        });
+    });
+}
 
-    function addMessage(sender, message) {
-        const messageDiv = document.createElement("div");
-        messageDiv.className = sender;
-        messageDiv.innerText = message;
-        chatBox.appendChild(messageDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-});
+// Registration Form Submission
+if (document.getElementById('registerForm')) {
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Reset error message
+        errorMessage.style.display = 'none';
+
+        // Validation
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+            errorMessage.textContent = 'Please fill in all fields';
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = 'Passwords do not match';
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        // Submit form data to PHP
+        fetch('register.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)},
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = 'login.html'; // Redirect to login page
+            } else {
+                errorMessage.textContent = data.message || 'Registration failed';
+                errorMessage.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessage.textContent = 'An error occurred';
+            errorMessage.style.display = 'block';
+        });
+    });
+}
